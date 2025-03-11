@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Earning Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <section class="h-screen flex items-center justify-center text-center px-6">
+        <div>
+            <h1 class="text-4xl sm:text-6xl font-bold">
+                <span id="typing-text" class="border-r-4 border-white pr-2"></span>
+            </h1>
+            <p class="mt-4 text-lg sm:text-xl text-gray-300">Start earning today with easy tasks!</p>
+            <a href="#" class="mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold">
+                Get Started
+            </a>
+        </div>
+    </section>
+
+    <script>
+        const textArray = ["Earn from anywhere.", "Work on your terms.", "Start today!"];
+        let textIndex = 0, charIndex = 0;
+        const typingText = document.getElementById("typing-text");
+
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typingText.innerHTML += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 1500);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typingText.innerHTML = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+
+        type();
+    </script>
+</body>
+</html>
